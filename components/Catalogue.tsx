@@ -3,11 +3,9 @@ import { fetchCars } from "../api";
 import CarCard from "./CarCard";
 
 const Catalogue = async () => {
-	const allCars = await fetchCars();
+	const allCars = await fetchCars("toyota");
 
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
-
-	console.log("MY", allCars);
 
 	return (
 		<div className="mt-10 padding-x padding-y max-width">
