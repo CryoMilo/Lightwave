@@ -33,11 +33,12 @@ export type CarPropsArray = CarProps[];
 
 export interface Option {
 	title: string;
-	value: string | number;
+	value: string;
 }
 
 export interface CustomFilterProps {
 	options: Option[];
+	fieldName: string;
 }
 
 export interface SearchParamProps {

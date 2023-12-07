@@ -6,7 +6,9 @@ export async function fetchCars(searchParams: SearchParamProps) {
 		"X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
 	};
 
-	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${searchParams.make}&model=${searchParams.model}&limit=10`;
+	const { make, model, year, fuel } = searchParams;
+
+	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&model=${model}&year=${year}&fuel=${fuel}&limit=10`;
 
 	const response = await fetch(url, { method: "GET", headers: headers });
 

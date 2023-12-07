@@ -4,13 +4,24 @@ import { Listbox, Transition } from "@headlessui/react";
 import { FC, Fragment, useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { CustomFilterProps } from "../types";
+import { buildQueryParam } from "../utils/buildQueryParam";
+import { useRouter } from "next/navigation";
 
-const CustomFilter: FC<CustomFilterProps> = ({ options }) => {
+const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 	const [selected, setSelected] = useState(options[0].value);
+	const router = useRouter();
+
+	const handleChange = (data: string) => {
+		setSelected(data);
+
+		const updatedQueryString = buildQueryParam();
+
+		router.push(updatedQueryString, { scroll: false });
+	};
 
 	return (
-		<Listbox value={selected} onChange={setSelected}>
-			<div className="relative mt-1">
+		<Listbox value={selected} onChange={handleChange}>
+			<div className="relative">
 				<Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
 					<span className="block truncate">
 						{selected === "" ? options[0].title : selected}

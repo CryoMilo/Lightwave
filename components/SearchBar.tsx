@@ -3,28 +3,13 @@
 import { useState } from "react";
 import { SearchManufacturer } from ".";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { buildQueryParam } from "../utils/buildQueryParam";
 
 const SearchBar = () => {
 	const [manufacturer, setManufacturer] = useState("");
 	const [model, setModel] = useState("");
 	const router = useRouter();
-
-	const updateQuery = (manufacturer: string, model: string) => {
-		const searchParams = new URLSearchParams(window.location.search);
-
-		if (model) {
-			searchParams.set("model", model);
-		} else searchParams.delete("model");
-
-		if (manufacturer) {
-			searchParams.set("make", manufacturer);
-		} else searchParams.delete("make");
-
-		const newQueryParam = `?${searchParams.toString()}`;
-
-		router.push(newQueryParam, { scroll: false });
-	};
 
 	const SearchButton = ({ otherStyles }: { otherStyles?: string }) => (
 		<button
@@ -40,7 +25,12 @@ const SearchBar = () => {
 		if (model === "" && manufacturer === "")
 			return alert("Fill the search bar");
 
-		updateQuery(manufacturer.toLowerCase(), model.toLowerCase());
+		const updatedQueryString = buildQueryParam(
+			manufacturer.toLowerCase(),
+			model.toLowerCase()
+		);
+
+		router.push(updatedQueryString, { scroll: false });
 	};
 
 	return (

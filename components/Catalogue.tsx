@@ -31,8 +31,8 @@ const Catalogue = async ({
 				<SearchBar />
 
 				<div className="home__filter-container">
-					<CustomFilter options={yearsOfProduction} />
-					<CustomFilter options={fuels} />
+					<CustomFilter options={yearsOfProduction} fieldName="year" />
+					<CustomFilter options={fuels} fieldName="fuel" />
 				</div>
 			</div>
 
