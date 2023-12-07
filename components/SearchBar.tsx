@@ -3,18 +3,45 @@
 import { useState } from "react";
 import { SearchManufacturer } from ".";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SearchBar = () => {
 	const [manufacturer, setManufacturer] = useState("");
-	const [model, setModel] = useState();
+	const [model, setModel] = useState("");
+	const router = useRouter();
 
-	const handleSearch = () => {};
+	const updateQuery = (manufacturer: string, model: string) => {
+		const searchParams = new URLSearchParams(window.location.search);
+
+		if (model) {
+			searchParams.set("model", model);
+		} else searchParams.delete("model");
+
+		if (manufacturer) {
+			searchParams.set("make", manufacturer);
+		} else searchParams.delete("make");
+
+		const newQueryParam = `?${searchParams.toString()}`;
+
+		router.push(newQueryParam, { scroll: false });
+	};
 
 	const SearchButton = ({ otherStyles }: { otherStyles?: string }) => (
-		<div className={`absolute right-2 p-[5px] cursor-pointer ${otherStyles}`}>
+		<button
+			type="submit"
+			className={`absolute right-2 p-[5px] cursor-pointer ${otherStyles}`}>
 			<Image src="/magnifying-glass.svg" alt="search" width={30} height={30} />
-		</div>
+		</button>
 	);
+
+	const handleSearch = (e: any) => {
+		e.preventDefault();
+
+		if (model === "" && manufacturer === "")
+			return alert("Fill the search bar");
+
+		updateQuery(manufacturer.toLowerCase(), model.toLowerCase());
+	};
 
 	return (
 		<form className="searchbar" onSubmit={handleSearch}>
@@ -34,7 +61,13 @@ const SearchBar = () => {
 					alt="model icon"
 					className="absolute ml-4"
 				/>
-				<input type="text" className="searchbar__input" placeholder="Corolla" />
+				<input
+					type="text"
+					className="searchbar__input"
+					placeholder="Corolla"
+					value={model}
+					onChange={(e) => setModel(e.target.value)}
+				/>
 				<SearchButton />
 			</div>
 		</form>

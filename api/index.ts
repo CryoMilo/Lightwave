@@ -1,12 +1,12 @@
-import { CarProps } from "../types";
+import { SearchParamProps } from "../types";
 
-export async function fetchCars(make: string) {
+export async function fetchCars(searchParams: SearchParamProps) {
 	const headers = {
-		"X-RapidAPI-Key": "ceb32b71d0mshc49238ee204afbbp17a4d6jsnb363bf1a348c",
+		"X-RapidAPI-Key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
 		"X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
 	};
 
-	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}`;
+	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${searchParams.make}&model=${searchParams.model}&limit=10`;
 
 	const response = await fetch(url, { method: "GET", headers: headers });
 

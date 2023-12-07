@@ -32,6 +32,6 @@ export interface CarProps {
 export type CarPropsArray = CarProps[];
 
 export interface SearchParamProps {
-	manufacturer: string;
+	make: string;
 	model: string;
 }
