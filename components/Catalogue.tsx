@@ -1,9 +1,17 @@
 import { CustomFilter, SearchBar } from ".";
 import { fetchCars } from "../api";
+import { SearchParamProps } from "../types";
 import CarCard from "./CarCard";
 
-const Catalogue = async () => {
-	const allCars = await fetchCars("toyota");
+const Catalogue = async ({
+	searchParams,
+}: {
+	searchParams: SearchParamProps;
+}) => {
+	const allCars = await fetchCars({
+		make: searchParams.make || "",
+		model: searchParams.model || "",
+	});
 
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 

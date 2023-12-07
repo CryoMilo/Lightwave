@@ -30,3 +30,8 @@ export interface CarProps {
 }
 
 export type CarPropsArray = CarProps[];
+
+export interface SearchParamProps {
+	make: string;
+	model: string;
+}
