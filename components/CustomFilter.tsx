@@ -4,19 +4,22 @@ import { Listbox, Transition } from "@headlessui/react";
 import { FC, Fragment, useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { CustomFilterProps } from "../types";
-import { buildQueryParam } from "../utils/buildQueryParam";
+import { updateQueryParams } from "../utils/buildQueryParams";
 import { useRouter } from "next/navigation";
 
 const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 	const [selected, setSelected] = useState(options[0].value);
+
 	const router = useRouter();
 
 	const handleChange = (data: string) => {
 		setSelected(data);
 
-		const updatedQueryString = buildQueryParam();
+		const newPathName = updateQueryParams(fieldName, data);
 
-		router.push(updatedQueryString, { scroll: false });
+		console.log("topush", newPathName);
+
+		router.push(newPathName, { scroll: false });
 	};
 
 	return (

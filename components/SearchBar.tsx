@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SearchManufacturer } from ".";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { buildQueryParam } from "../utils/buildQueryParam";
+import { buildQueryParams } from "../utils/buildQueryParams";
 
 const SearchBar = () => {
 	const [manufacturer, setManufacturer] = useState("");
@@ -25,7 +25,7 @@ const SearchBar = () => {
 		if (model === "" && manufacturer === "")
 			return alert("Fill the search bar");
 
-		const updatedQueryString = buildQueryParam(
+		const updatedQueryString = buildQueryParams(
 			manufacturer.toLowerCase(),
 			model.toLowerCase()
 		);
