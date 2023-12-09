@@ -3,6 +3,7 @@ interface QueryParamTypes {
 	model?: string | null;
 	year?: string | number | null;
 	fuelType?: string | null;
+	limit?: number;
 }
 
 export const buildQueryParams = ({
@@ -10,6 +11,7 @@ export const buildQueryParams = ({
 	model,
 	year,
 	fuelType,
+	limit,
 }: QueryParamTypes) => {
 	const searchParams = new URLSearchParams(window.location.search);
 
@@ -28,6 +30,10 @@ export const buildQueryParams = ({
 	if (fuelType) {
 		searchParams.set("fuelType", fuelType);
 	} else searchParams.delete("fuelType");
+
+	if (limit) {
+		searchParams.set("limit", limit.toString());
+	} else searchParams.delete("limit");
 
 	const newQueryParam = `?${searchParams.toString()}`;
 

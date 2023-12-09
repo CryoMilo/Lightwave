@@ -6,7 +6,6 @@ import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { CustomFilterProps } from "../types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { buildQueryParams } from "../utils/buildQueryParams";
-import { snakeCaseToTitleCase } from "../utils/snakeToTitle";
 
 type CurrentQuery = {
 	make?: string | null;
