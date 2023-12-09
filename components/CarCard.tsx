@@ -52,7 +52,7 @@ const CarCard = ({ car }: CarCardProps) => {
 				</div>
 				<div className="flex justify-center flex-col items-center gap-2">
 					<Image src="/tire.svg" alt="tire" width={20} height={20} />
-					<p>{drive.toUpperCase()}</p>
+					<p>{drive?.toUpperCase()}</p>
 				</div>
 				<div className="flex justify-center flex-col items-center gap-2">
 					<Image src="/gas.svg" alt="gas" width={20} height={20} />

@@ -1,5 +1,6 @@
 import { CustomFilter, SearchBar } from ".";
 import { fetchCars } from "../api";
+import { fuels, yearsOfProduction } from "../constants";
 import { SearchParamProps } from "../types";
 import CarCard from "./CarCard";
 
@@ -8,9 +9,13 @@ const Catalogue = async ({
 }: {
 	searchParams: SearchParamProps;
 }) => {
+	const { make, model, year, fuelType } = searchParams;
+
 	const allCars = await fetchCars({
-		make: searchParams.make || "",
-		model: searchParams.model || "",
+		make: make || "",
+		model: model || "",
+		year: year || "2023",
+		fuelType: fuelType || "gas",
 	});
 
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
@@ -26,8 +31,8 @@ const Catalogue = async ({
 				<SearchBar />
 
 				<div className="home__filter-container">
-					<CustomFilter />
-					<CustomFilter />
+					<CustomFilter options={yearsOfProduction} fieldName="year" />
+					<CustomFilter options={fuels} fieldName="fuelType" />
 				</div>
 			</div>
 

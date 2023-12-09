@@ -31,7 +31,19 @@ export interface CarProps {
 
 export type CarPropsArray = CarProps[];
 
+export interface Option {
+	title: string;
+	value: string;
+}
+
+export interface CustomFilterProps {
+	options: Option[];
+	fieldName: string;
+}
+
 export interface SearchParamProps {
 	make: string;
 	model: string;
+	year: string;
+	fuelType: string;
 }

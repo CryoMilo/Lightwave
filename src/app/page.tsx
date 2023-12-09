@@ -1,5 +1,4 @@
 import Hero from "../../components/Hero";
-import { fetchCars } from "../../api";
 import { Catalogue } from "../../components";
 
 export default function Home({ searchParams }: any) {
