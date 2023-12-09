@@ -5,12 +5,18 @@ import { SearchManufacturer } from ".";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { buildQueryParams } from "../utils/buildQueryParams";
+import { snakeCaseToTitleCase } from "../utils/snakeToTitle";
 
 const SearchBar = () => {
-	const [manufacturer, setManufacturer] = useState("");
-	const [model, setModel] = useState("");
-	const router = useRouter();
 	const params = useSearchParams();
+
+	const [manufacturer, setManufacturer] = useState(
+		snakeCaseToTitleCase(params.get("make") || "")
+	);
+	const [model, setModel] = useState(
+		snakeCaseToTitleCase(params.get("model") || "")
+	);
+	const router = useRouter();
 
 	const SearchButton = ({ otherStyles }: { otherStyles?: string }) => (
 		<button
@@ -24,7 +30,7 @@ const SearchBar = () => {
 		e.preventDefault();
 
 		if (model === "" && manufacturer === "")
-			return alert("Fill the search bar");
+			return alert("Please fill the search bar");
 
 		const updatedQueryString = buildQueryParams({
 			make: manufacturer.toLowerCase(),
