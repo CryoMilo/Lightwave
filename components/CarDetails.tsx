@@ -3,6 +3,7 @@
 import { Dialog } from "@headlessui/react";
 import { CarProps } from "../types";
 import Image from "next/image";
+import { snakeCaseToTitleCase } from "../utils/snakeToTitle";
 
 interface CarDetailsProps {
 	isOpen: boolean;
@@ -11,20 +12,11 @@ interface CarDetailsProps {
 }
 
 const CarDetails = ({ isOpen, car, closeModal }: CarDetailsProps) => {
-	const {
-		city_mpg,
-		class: carClass,
-		combination_mpg,
-		cylinders,
-		displacement,
-		fuel_type,
-		year,
-		make,
-		model,
-		highway_mpg,
-		transmission,
-		drive,
-	} = car;
+	const { make, model } = car;
+
+	const labels = Object.keys(car);
+
+	const values = Object.values(car);
 
 	return (
 		<Dialog open={isOpen} onClose={closeModal} className="relative z-50">
@@ -52,32 +44,14 @@ const CarDetails = ({ isOpen, car, closeModal }: CarDetailsProps) => {
 						</Dialog.Title>
 						<div className="grid grid-cols-2 mt-6">
 							<div className="flex flex-col gap-4 text-[14px] text-gray-400">
-								<span>City Mpg</span>
-								<span>Class</span>
-								<span>Combination Mpg</span>
-								<span>Cylinders</span>
-								<span>Displacement</span>
-								<span>Drive</span>
-								<span>Fuel Type</span>
-								<span>Highway Mpg</span>
-								<span>Make</span>
-								<span>Model</span>
-								<span>Transmission</span>
-								<span>Year</span>
+								{labels.map((value) => (
+									<span key={value}>{snakeCaseToTitleCase(value)}</span>
+								))}
 							</div>
 							<div className="text-right flex flex-col gap-4 text-[14px]">
-								<span>{city_mpg}</span>
-								<span>{carClass}</span>
-								<span>{combination_mpg}</span>
-								<span>{cylinders}</span>
-								<span>{displacement}</span>
-								<span>{drive}</span>
-								<span>{fuel_type}</span>
-								<span>{highway_mpg}</span>
-								<span>{make}</span>
-								<span>{model}</span>
-								<span>{transmission}</span>
-								<span>{year}</span>
+								{values.map((value) => (
+									<span key={value}>{value}</span>
+								))}
 							</div>
 						</div>
 					</div>

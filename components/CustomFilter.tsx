@@ -6,6 +6,7 @@ import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { CustomFilterProps } from "../types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { buildQueryParams } from "../utils/buildQueryParams";
+import { snakeCaseToTitleCase } from "../utils/snakeToTitle";
 
 type CurrentQuery = {
 	make?: string | null;
@@ -15,8 +16,11 @@ type CurrentQuery = {
 };
 
 const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
-	const [selected, setSelected] = useState(options[0].value);
 	const params = useSearchParams();
+
+	const [selected, setSelected] = useState(
+		params.get(fieldName) || options[0].value
+	);
 
 	const router = useRouter();
 
