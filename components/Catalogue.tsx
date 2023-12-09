@@ -9,13 +9,13 @@ const Catalogue = async ({
 }: {
 	searchParams: SearchParamProps;
 }) => {
-	const { make, model, year, fuel } = searchParams;
+	const { make, model, year, fuelType } = searchParams;
 
 	const allCars = await fetchCars({
 		make: make || "",
 		model: model || "",
 		year: year || "2023",
-		fuel: fuel || "gas",
+		fuelType: fuelType || "gas",
 	});
 
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
@@ -32,7 +32,7 @@ const Catalogue = async ({
 
 				<div className="home__filter-container">
 					<CustomFilter options={yearsOfProduction} fieldName="year" />
-					<CustomFilter options={fuels} fieldName="fuel" />
+					<CustomFilter options={fuels} fieldName="fuelType" />
 				</div>
 			</div>
 

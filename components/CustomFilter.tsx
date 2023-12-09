@@ -4,22 +4,39 @@ import { Listbox, Transition } from "@headlessui/react";
 import { FC, Fragment, useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { CustomFilterProps } from "../types";
-import { updateQueryParams } from "../utils/buildQueryParams";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { buildQueryParams } from "../utils/buildQueryParams";
+
+type CurrentQuery = {
+	make?: string | null;
+	model?: string | null;
+	year?: string | null;
+	fuelType?: string | null;
+};
 
 const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 	const [selected, setSelected] = useState(options[0].value);
+	const params = useSearchParams();
 
 	const router = useRouter();
 
 	const handleChange = (data: string) => {
 		setSelected(data);
 
-		const newPathName = updateQueryParams(fieldName, data);
+		const currentQuery: CurrentQuery = {
+			make: params.get("make")?.toLowerCase() || "",
+			model: params.get("model")?.toLowerCase() || "",
+			year:
+				(fieldName === "year" && data.toLowerCase()) ||
+				params.get("year")?.toLowerCase(),
+			fuelType:
+				(fieldName === "fuelType" && data.toLowerCase()) ||
+				params.get("fuelType")?.toLowerCase(),
+		};
 
-		console.log("topush", newPathName);
+		const newQueryString = buildQueryParams(currentQuery);
 
-		router.push(newPathName, { scroll: false });
+		router.push(newQueryString, { scroll: false });
 	};
 
 	return (

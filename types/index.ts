@@ -45,5 +45,5 @@ export interface SearchParamProps {
 	make: string;
 	model: string;
 	year: string;
-	fuel: string;
+	fuelType: string;
 }
