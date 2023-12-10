@@ -44,7 +44,7 @@ const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 
 	return (
 		<Listbox value={selected} onChange={handleChange}>
-			<div className="relative">
+			<div className="relative w-[130px]">
 				<Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
 					<span className="block truncate">
 						{selected === "" ? options[0].title : selected}
@@ -67,7 +67,7 @@ const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 								key={item.title}
 								className={({ active }) =>
 									`relative cursor-default select-none py-2 px-4 ${
-										active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+										active ? "bg-blue-500 text-white" : "text-gray-900"
 									}`
 								}
 								value={item.value}>
