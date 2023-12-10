@@ -46,4 +46,5 @@ export interface SearchParamProps {
 	model: string;
 	year: string;
 	fuelType: string;
+	limit: string;
 }

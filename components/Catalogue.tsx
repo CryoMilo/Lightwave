@@ -1,21 +1,23 @@
-import { CustomFilter, SearchBar } from ".";
+import { CustomButton, CustomFilter, SearchBar } from ".";
 import { fetchCars } from "../api";
 import { fuels, yearsOfProduction } from "../constants";
 import { SearchParamProps } from "../types";
 import CarCard from "./CarCard";
+import ShowMore from "./ShowMore";
 
 const Catalogue = async ({
 	searchParams,
 }: {
 	searchParams: SearchParamProps;
 }) => {
-	const { make, model, year, fuelType } = searchParams;
+	const { make, model, year, fuelType, limit } = searchParams;
 
 	const allCars = await fetchCars({
 		make: make || "",
 		model: model || "",
 		year: year || "2023",
 		fuelType: fuelType || "gas",
+		limit: limit || "",
 	});
 
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
@@ -48,6 +50,10 @@ const Catalogue = async ({
 					<p>{allCars?.message}</p>
 				</div>
 			)}
+
+			<div className="w-[200px] mx-auto mt-8">
+				<ShowMore />
+			</div>
 		</div>
 	);
 };
