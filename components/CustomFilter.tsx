@@ -3,16 +3,9 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { FC, Fragment, useState } from "react";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import { CustomFilterProps } from "../types";
+import { CustomFilterProps, QueryParamTypes } from "../types";
 import { useRouter, useSearchParams } from "next/navigation";
 import { buildQueryParams } from "../utils/buildQueryParams";
-
-type CurrentQuery = {
-	make?: string | null;
-	model?: string | null;
-	year?: string | null;
-	fuelType?: string | null;
-};
 
 const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 	const params = useSearchParams();
@@ -26,15 +19,14 @@ const CustomFilter: FC<CustomFilterProps> = ({ options, fieldName }) => {
 	const handleChange = (data: string) => {
 		setSelected(data);
 
-		const currentQuery: CurrentQuery = {
-			make: params.get("make")?.toLowerCase() || "",
-			model: params.get("model")?.toLowerCase() || "",
+		const currentQuery: QueryParamTypes = {
 			year:
 				(fieldName === "year" && data.toLowerCase()) ||
 				params.get("year")?.toLowerCase(),
 			fuelType:
 				(fieldName === "fuelType" && data.toLowerCase()) ||
 				params.get("fuelType")?.toLowerCase(),
+			limit: 10,
 		};
 
 		const newQueryString = buildQueryParams(currentQuery);

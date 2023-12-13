@@ -11,23 +11,23 @@ export const buildQueryParams = ({
 
 	if (model) {
 		searchParams.set("model", model);
-	} else searchParams.delete("model");
+	}
 
 	if (make) {
 		searchParams.set("make", make);
-	} else searchParams.delete("make");
+	}
 
 	if (year) {
 		searchParams.set("year", year.toString());
-	} else searchParams.delete("year");
+	}
 
 	if (fuelType) {
 		searchParams.set("fuelType", fuelType);
-	} else searchParams.delete("fuelType");
+	}
 
 	if (limit) {
 		searchParams.set("limit", limit.toString());
-	} else searchParams.delete("limit");
+	}
 
 	const newQueryParam = `?${searchParams.toString()}`;
 

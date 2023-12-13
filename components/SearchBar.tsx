@@ -35,6 +35,7 @@ const SearchBar = () => {
 		const updatedQueryString = buildQueryParams({
 			make: manufacturer.toLowerCase(),
 			model: model.toLowerCase(),
+			limit: 10,
 		});
 
 		router.push(updatedQueryString, { scroll: false });

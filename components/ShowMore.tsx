@@ -6,18 +6,15 @@ import { buildQueryParams } from "../utils/buildQueryParams";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const ShowMore = () => {
-	const [limit, setLimit] = useState(10);
-	const router = useRouter();
 	const params = useSearchParams();
 
-	const onClick = () => {
-		params.get("limit") !== null ? setLimit(limit + 10) : setLimit(10);
+	const [limit, setLimit] = useState(20);
+	const router = useRouter();
+
+	const onClick = async () => {
+		params.get("limit") === "10" ? setLimit(20) : setLimit(limit + 10);
 
 		const updatedQueryString = buildQueryParams({
-			make: params.get("make")?.toLowerCase() || "",
-			model: params.get("model")?.toLowerCase() || "",
-			year: params.get("year")?.toLowerCase() || "",
-			fuelType: params.get("model")?.toLowerCase() || "",
 			limit: limit,
 		});
 

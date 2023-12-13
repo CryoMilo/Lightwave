@@ -8,7 +8,9 @@ export async function fetchCars(searchParams: QueryParamTypes) {
 
 	const { make, model, year, fuelType, limit } = searchParams;
 
-	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&model=${model}&fuel_type=${fuelType}&year=${year}&limit=${limit}`;
+	const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${make}&model=${model}&fuel_type=${fuelType}&year=${year}&limit=${
+		limit || 10
+	}`;
 
 	const response = await fetch(url, { method: "GET", headers: headers });
 
