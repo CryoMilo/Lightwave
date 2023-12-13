@@ -7,7 +7,7 @@ const Footer = () => {
 		<footer className="my-20 padding-x padding-y flex flex-col gap-20 sm:flex-row justify-between max-width">
 			<div className="text-gray-500">
 				<Image
-					src="/logo.svg"
+					src="/logo.png"
 					alt="logo"
 					width={118}
 					height={18}
