@@ -1,10 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import { CustomButton } from ".";
+import Link from "next/link";
 
 const Hero = () => {
-	const handleScroll = () => {};
+	// const handleScroll = () => {
+	// 	router.push("#catalogue");
+	// };
 
 	return (
 		<div className="hero">
@@ -15,11 +16,12 @@ const Hero = () => {
 				<p className="hero__subtitle">
 					Simplify your car rental journey with our seamless booking process.
 				</p>
-				<CustomButton
-					title="Explore Cars"
-					containerStyles="bg-primary-blue text-white rounded-full mt-10 px-4 py-2"
-					handleClick={handleScroll}
-				/>
+				<Link href="#catalogue">
+					<CustomButton
+						title="Explore Cars"
+						containerStyles="bg-primary-blue text-white rounded-full mt-10 px-4 py-2"
+					/>
+				</Link>
 			</div>
 			<div className="hero__image-container overflow-hidden">
 				<div className="hero__image">

@@ -1,4 +1,4 @@
-import { CustomButton, CustomFilter, SearchBar } from ".";
+import { CustomFilter, SearchBar } from ".";
 import { fetchCars } from "../api";
 import { fuels, yearsOfProduction } from "../constants";
 import { SearchParamProps } from "../types";
@@ -23,7 +23,7 @@ const Catalogue = async ({
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
 	return (
-		<div className="mt-10 padding-x padding-y max-width">
+		<div id="catalogue" className="mt-10 padding-x padding-y max-width">
 			<div className="home__text-container">
 				<div className="text-4xl font-extrabold">Catalogue</div>
 				<p>Explore the cars</p>
