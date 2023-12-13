@@ -1,10 +1,4 @@
-interface QueryParamTypes {
-	make?: string | null;
-	model?: string | null;
-	year?: string | number | null;
-	fuelType?: string | null;
-	limit?: number;
-}
+import { QueryParamTypes } from "../types";
 
 export const buildQueryParams = ({
 	make,

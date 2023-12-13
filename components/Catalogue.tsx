@@ -1,14 +1,14 @@
 import { CustomFilter, SearchBar } from ".";
 import { fetchCars } from "../api";
 import { fuels, yearsOfProduction } from "../constants";
-import { SearchParamProps } from "../types";
+import { QueryParamTypes } from "../types";
 import CarCard from "./CarCard";
 import ShowMore from "./ShowMore";
 
 const Catalogue = async ({
 	searchParams,
 }: {
-	searchParams: SearchParamProps;
+	searchParams: QueryParamTypes;
 }) => {
 	const { make, model, year, fuelType, limit } = searchParams;
 
@@ -17,7 +17,7 @@ const Catalogue = async ({
 		model: model || "",
 		year: year || "2023",
 		fuelType: fuelType || "gas",
-		limit: limit || "",
+		limit: limit || 10,
 	});
 
 	const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;

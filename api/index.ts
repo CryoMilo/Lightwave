@@ -1,6 +1,6 @@
-import { SearchParamProps } from "../types";
+import { QueryParamTypes } from "../types";
 
-export async function fetchCars(searchParams: SearchParamProps) {
+export async function fetchCars(searchParams: QueryParamTypes) {
 	const headers = {
 		"X-RapidAPI-Key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
 		"X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",

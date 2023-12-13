@@ -41,10 +41,10 @@ export interface CustomFilterProps {
 	fieldName: string;
 }
 
-export interface SearchParamProps {
-	make: string;
-	model: string;
-	year: string;
-	fuelType: string;
-	limit: string;
+export interface QueryParamTypes {
+	make?: string | null;
+	model?: string | null;
+	year?: string | number | null;
+	fuelType?: string | null;
+	limit?: number;
 }
