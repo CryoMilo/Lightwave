@@ -25,9 +25,9 @@ const CarCard = ({ car }: CarCardProps) => {
 			</div>
 
 			<p className="flex mt-6 font-extrabold text-[32px]">
-				<span className="font-semibold self-start text-[14px]">$</span>
+				{/* <span className="font-semibold self-start text-[14px]">$</span>
 				<span>{carRent}</span>
-				<span className="font-thin self-end text-[14px]">/day</span>
+				<span className="font-thin self-end text-[14px]">/day</span> */}
 			</p>
 
 			<div className="relative w-full h-40 my-3 object-contain">

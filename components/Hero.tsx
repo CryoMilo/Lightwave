@@ -3,18 +3,16 @@ import { CustomButton } from ".";
 import Link from "next/link";
 
 const Hero = () => {
-	// const handleScroll = () => {
-	// 	router.push("#catalogue");
-	// };
-
 	return (
 		<div className="hero">
 			<div className="flex-1 pt-36 padding-x">
 				<h1 className="hero__title">
-					Drive Away in Minutes: Book, Zoom, Yours
+					{/* Drive Away in Minutes: Book, Zoom, Yours */}
+					Your Trusty Car Database
 				</h1>
 				<p className="hero__subtitle">
-					Simplify your car rental journey with our seamless booking process.
+					Explore the vast world of automobiles
+					{/* Simplify your car rental journey with our seamless booking process. */}
 				</p>
 				<Link href="#catalogue">
 					<CustomButton
