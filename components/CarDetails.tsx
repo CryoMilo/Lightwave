@@ -4,6 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { CarProps } from "../types";
 import Image from "next/image";
 import { snakeCaseToTitleCase } from "../utils/snakeToTitle";
+import { dataTransformer } from "../utils/dataTransformer";
 
 interface CarDetailsProps {
 	isOpen: boolean;
@@ -50,7 +51,7 @@ const CarDetails = ({ isOpen, car, closeModal }: CarDetailsProps) => {
 							</div>
 							<div className="text-right flex flex-col gap-4 text-[14px]">
 								{values.map((value) => (
-									<span key={value}>{value}</span>
+									<span key={value}>{dataTransformer(value)}</span>
 								))}
 							</div>
 						</div>
